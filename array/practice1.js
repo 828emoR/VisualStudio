@@ -1,3 +1,6 @@
+//array/practice1.js
+let data =
+`
 [{"id":1,"first_name":"Cordula","last_name":"Asplen","email":"casplen0@wikimedia.org","gender":"Agender","ip_address":"150.216.180.181"},
 {"id":2,"first_name":"Adriano","last_name":"Jakubowski","email":"ajakubowski1@xing.com","gender":"Male","ip_address":"110.102.118.16"},
 {"id":3,"first_name":"Alexander","last_name":"Chastel","email":"achastel2@wufoo.com","gender":"Male","ip_address":"14.159.89.40"},
@@ -13,3 +16,53 @@
 {"id":13,"first_name":"Coriss","last_name":"Cowely","email":"ccowelyc@jugem.jp","gender":"Female","ip_address":"169.59.236.129"},
 {"id":14,"first_name":"Lawry","last_name":"Egel","email":"legeld@go.com","gender":"Male","ip_address":"206.31.227.56"},
 {"id":15,"first_name":"Marnie","last_name":"Jaouen","email":"mjaouene@diigo.com","gender":"Female","ip_address":"107.100.134.178"}]
+`;
+
+let objAry = JSON.parse(data);//문자열 => Object 변경.
+console.log(objAry);
+
+
+//filter() : 반환조건 참인 요소 => 새로운 배열.
+let newAry = objAry.filter(function (elem){
+  console.log(elem);
+  return elem.gender == 'Female';
+});
+
+console.log(newAry);
+
+//함수 : femaleList(ary);
+//document.write() = ul > li * 8 생성
+// function femaleList(ary) {
+// let target = document.getElementById('show');
+// let ul= document.createElement('ul');
+// ary.forEach(function (elem){
+//     for(let field in elem) {
+//       let li =document.createElement('li');
+//       let val = '';
+//       for(let field in elem){
+//       val += `${field} : ${elem[field]} ${idx == (ary.length-1)?'':','}`;
+//       }
+//       li.textContent = val;
+//       ul.appendChild(li);
+//     }
+//     })
+//     target.appendChild(ul);
+//   }
+//   document.addEventListener('DOMContentLoaded', function (){
+//     femaleList(newAry)
+//   })
+
+
+  function femaleList(ary){
+    let tag = '<ul>';
+    ary.forEach (function (elem){
+      tag +='<li>';
+      for(let field in elem) {
+        tag+=`${field} : ${elem[field]} ${field=='ip-address'?'':', '}`;
+      }
+      tag+= '</li>';
+    });
+    tag +='</ul>';
+    document.write(tag);
+  }
+

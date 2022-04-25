@@ -1,4 +1,6 @@
-[{"id":1,"first_name":"Cordula","last_name":"Asplen","email":"casplen0@wikimedia.org","gender":"Agender","ip_address":"150.216.180.181"},
+//array/practice2.js
+let data=
+`[{"id":1,"first_name":"Cordula","last_name":"Asplen","email":"casplen0@wikimedia.org","gender":"Agender","ip_address":"150.216.180.181"},
 {"id":2,"first_name":"Adriano","last_name":"Jakubowski","email":"ajakubowski1@xing.com","gender":"Male","ip_address":"110.102.118.16"},
 {"id":3,"first_name":"Alexander","last_name":"Chastel","email":"achastel2@wufoo.com","gender":"Male","ip_address":"14.159.89.40"},
 {"id":4,"first_name":"Paolina","last_name":"Dymott","email":"pdymott3@whitehouse.gov","gender":"Female","ip_address":"147.230.46.138"},
@@ -12,4 +14,23 @@
 {"id":12,"first_name":"Haslett","last_name":"Eyres","email":"heyresb@msn.com","gender":"Male","ip_address":"246.70.39.254"},
 {"id":13,"first_name":"Coriss","last_name":"Cowely","email":"ccowelyc@jugem.jp","gender":"Female","ip_address":"169.59.236.129"},
 {"id":14,"first_name":"Lawry","last_name":"Egel","email":"legeld@go.com","gender":"Male","ip_address":"206.31.227.56"},
-{"id":15,"first_name":"Marnie","last_name":"Jaouen","email":"mjaouene@diigo.com","gender":"Female","ip_address":"107.100.134.178"}]
+{"id":15,"first_name":"Marnie","last_name":"Jaouen","email":"mjaouene@diigo.com","gender":"Female","ip_address":"107.100.134.178"}]`;
+
+let objAry = JSON.parse(data); // 문자열 => Object 변환.
+
+console.log(objAry);
+
+//tag 를 누적시킴.
+let result = objAry.reduce(function(accum, elem, ind) {
+  //<ul> ~ </ul>
+  if(ind == 0){
+    accum += `<ul>`;
+  }
+  accum += `<li>id: ${elem['id']}, first_name: ${elem['first_name']}</li>`;
+  if (ind == objAry.length -1){
+accum+= '</ul>';
+  }
+  return accum; // 다음 순번의 초기값(계속 누적해서 Tag 생성.)
+},'');
+console.log(result);
+document.write(result);
